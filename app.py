@@ -4,7 +4,7 @@ import numpy as np
 import pydeck as pdk
 import plotly.express as px
 
-data_url = ("/home/rhyme/Desktop/Project/Motor_Vehicle_Collisions_-_Crashes.csv")
+data_url = ("/Desktop/Project/Motor_Vehicle_Collisions_-_Crashes.csv")
 
 
 st.title("motor vehicle collisions in new york city")
@@ -51,16 +51,12 @@ st.write(pdk.Deck(
         elevation_range=[0,1000],
 
         ),
-],
-
-
-))
+],))
 
 
 st.subheader("breakdown by minute between %i:00 and %i:00" % (hour, (hour+1) %24))
 filtered = data[
     (data['date/time'].dt.hour >= hour) & (data['date/time'].dt.hour < (hour+1))
-
 ]
 
 hist=np.histogram(filtered['date/time'].dt.minute, bins=60, range=(0,60))[0]
@@ -79,12 +75,6 @@ elif select =='Cyclists':
 
 else:
     st.write(original_data.query("injured_motorists >= 1")[["on_street_name", "injured_motorists"]].sort_values(by=['injured_motorists'], ascending=False).dropna(how = 'any')[:5])
-
-
-
-
-
-
 
 
 if st.checkbox("show raw data", False):
