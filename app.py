@@ -8,7 +8,7 @@ data_url = {
 }
 st.title("motor vehicle collisions in new york city")
 st.markdown("it is a dashboard that analyses motor vehicles colliions in nyc")
-@st.cahe(persist= True)
+@st.cache(persist= True) #the computation is run only when the code or its inputs have changes
 def load_data(nrows):
     data=pd.read_csv(data_url, nrows=nrows, parse_Dates=[['CRASH_DATE', 'CRASH_TIME']])
     data.dropna(subset=['LATITUDE', 'LONGITUDE'], inplace=true)
